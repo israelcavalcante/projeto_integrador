@@ -1,18 +1,21 @@
 <?php
 include_once 'Pagina.php';
+include_once '../perfil/Perfil.php';
 
 $pagina = new Pagina();
 
-if (!empty($_GET['id_pagina'])) {
-    $pagina->carregarPorId($_GET['id_pagina']);
+$perfis = new Perfil();
+$paginas = $pagina->recuperarDados();
+$aperfil = $perfis->recuperarDados();
+
+
+if(!empty($_GET['id_pagina'])){
+$pagina->carregarPorId($_GET['id_pagina']);
 }
 
-include_once '../perfil/Perfil.php';
-$perfis = (new Perfil())->recuperarDados();
-
-include_once '../cabecalho.php';
+include_once("../cabecalho.php");
 ?>
-
+<div class="container">
     <div class="panel box-shadow-none content-header">
         <div class="panel-body">
             <div class="col-md-12">
@@ -20,67 +23,81 @@ include_once '../cabecalho.php';
             </div>
         </div>
     </div>
+    <br/>
+    <form class="form-horizontal" method="post" action="processamento.php?acao=salvar">
 
-    <div class="col-md-offset-1 col-md-10 panel">
-        <div id="mensagem"></div>
+        <input type="hidden" name="id_pagina" value="<?= $pagina->getIdPagina(); ?>">
 
-        <div class="col-md-12 panel-body">
-            <div class="col-md-12">
-                <form action="processamento.php?acao=salvar" method="post" class="form-horizontal">
+        <div class="form-group">
+            <legend >Nome</legend>
 
-                    <!-- id_pagina -->
-                    <div class="form-control" !important;">
-                        <input type="hidden" class="form-text" id="id_pagina" name="id_pagina" value="<?= $pagina->getIdPagina(); ?>">
-                    </div>
-                    <!-- Nome -->
-                    <div class="form-control" !important;">
-                        <label>Nome</label>
-                        <input type="text" class="form-text" id="nome" name="nome" value="<?= $pagina->getNome(); ?>">
-
-                    </div>
-                    <!-- Caminho -->
-                    <div class="form-control" !important;">
-                        <label>Caminho</label>
-                        <input type="text" class="form-text" id="caminho" name="caminho" value="<?= $pagina->getCaminho(); ?>">
-
-                    </div>
-                    <!-- Pública -->
-
-                    <div class="radio">
-        <label><input id="radio1" type="radio" name="publica"
-                      value="1" <?= ("1" == $pagina->getPublica()) ? "checked": ""; ?>/>Sim</label>
-    </div>
-    <div class="radio">
-        <label> <input id="radio1" type="radio" name="publica" value="0" <?= ("0" == $pagina->getPublica()) ? "checked": ""; ?>/>Não</label>
-    </div>
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" value="<?=$pagina->getNome()?>">
+            </div>
 
 
-                    <!-- Permissão à pagina -->
-                    <div class="form-group">
-                        <fieldset>
-                           <label>Perfis com permissão à esta página</label>
-                        </fieldset>
-                    </div>
-                    <?php foreach ($perfis as $aperfil) { ?>
-                        <div class="form-control form-animate-checkbox">
-                            <input type="checkbox" class="checkbox" value="<?= $aperfil['id_perfil'] ?>"
-                                   name="id_perfil[]">
-                            <label><?= $aperfil['nome'] ?></label>
-                        </div>
-                    <?php } ?>
-                    <!-- Enviando ou cancelando o Envio -->
-                    <div class="form-group">
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-success"><span class="fa fa-thumbs-o-up"> </span>
-                                Salvar
-                            </button>
-                            <a class="btn btn-danger" href="index.php"><span class="fa fa-reply"> </span> Voltar</a>
-                        </div>
-                    </div>
-                </form>
+        <div class="form-group">
+            <legend >Caminho</legend>
+
+                <input type="text" class="col-sm-2 form-control" id="nome" name="caminho" placeholder="Caminho" value="<?=$pagina->getCaminho()?>">
+
+        </div>
+
+
+        <div class="form-animate-checkbox" !important;">
+
+                <legend >Pública?</legend>
+                <label class="radio">
+                    <input id="radio1" type="radio" name="publica"
+                           value="1" <?= ("1" == $pagina->getPublica()) ? "checked": ""; ?>/>
+
+                              <span class="inner"></span></span> Sim
+                </label>
+                <label class="radio">
+                    <input id="radio1" type="radio" name="publica" value="0" <?= ("0" == $pagina->getPublica()) ? "checked": ""; ?>/>
+                    <span class="outer">
+                              <span class="inner"></span></span> Não
+                </label> <br>
+
+        </div>
+
+    <div class="form-group">
+            <fieldset>
+                <legend><span></span> Perfis com permissão à esta página</legend>
+            </fieldset>
+        </div>
+        <?php foreach ($aperfil as $perfil) { ?>
+            <div class="checkbox">
+                <input type="checkbox" class="checkbox" value="<?= $perfil['id_perfil'] ?>"
+                       name="id_perfil[]">
+                <label><?= $perfil['nome'] ?></label>
+            </div>
+        <?php } ?>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success">Salvar</button>
+                <button type="reset" class="btn btn-info">Limpar</button>
+                <a href="index.php" class="btn btn-danger">Voltar</a>
             </div>
         </div>
-    </div>
-
+    </form>
+</div>
 <?php
-include_once '../rodape.php'; ?>
+include_once("../rodape.php");
+?>
+
+<script>
+    // AJAX para verificação do nome
+    $('#nome').change(function () {
+
+        $.ajax({
+            url: 'processamento.php?acao=verificar_nome&' + $('#nome').serialize(),
+            success: function (dados) {
+                $('#mensagemNome').html(dados);
+            }
+        });
+
+        // Verificação em JQUERY Load
+        // $('#mensagemNome').load('processamento.php?acao=verificar_nome&nome=' + $('#nome').val());
+
+    });
+</script>
