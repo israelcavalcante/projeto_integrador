@@ -155,7 +155,7 @@ class livro
         $this->isbn = $dados[0]['isbn'];
         $this->id_editora = $dados[0]['id_editora'];
         $this->foto = $dados[0]['foto'];
-         }
+     }
 
 
     public function inserir($dados)

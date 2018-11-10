@@ -4,6 +4,7 @@ include_once 'Pagina.php';
 $pagina = new Pagina();
 $aPagina = $pagina->recuperarDados();
 
+
 include_once '../cabecalho.php';
 ?>
 
@@ -28,6 +29,7 @@ include_once '../cabecalho.php';
                                class="table table-bordered table-hover table-striped table-condensed">
                             <thead>
                             <tr>
+                                <td width="15%">Ações</td>
                                 <th>Nome</th>
                                 <th>Caminho</th>
                                 <th>Pública (S/N)</th>
@@ -36,6 +38,10 @@ include_once '../cabecalho.php';
                             <tbody>
                             <?php foreach ($aPagina as $pagina) { ?>
                                 <tr>
+                                    <td>
+                                        <a class='btn btn-primary'<a href="formulario.php?id_pagina=<?= $pagina['id_pagina'] ?>">Alterar</a>
+                                        <a class='btn btn-danger' href="processamento.php?acao=excluir&id_pagina=<?= $pagina['id_pagina'] ?>"> Excluir</a>
+                                    </td>
                                     <td><?= $pagina['nome'] ?></td>
                                     <td><?= $pagina['caminho'] ?></td>
                                     <td><?= ($pagina['publica'] == 0) ? "<span class='fa fa-circle' style='color: #ff6656'></span> Não" : "<span class='fa fa-circle' style='color: #27c24c;'></span> Sim" ?></td>

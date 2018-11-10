@@ -64,19 +64,14 @@ class Pagina
 
     public function carregarPorId($id_pagina)
     {
-
         $conexao = new Conexao();
-
-
         $sql = "select * from pagina where id_pagina = '$id_pagina'";
-
         $dados = $conexao->recuperarDados($sql);
 
         $this->id_pagina = $dados[0]['id_pagina'];
         $this->nome = $dados[0]['nome'];
         $this->caminho = $dados[0]['caminho'];
         $this->publica = $dados[0]['publica'];
-
         return $conexao->executar($sql);
     }
 
