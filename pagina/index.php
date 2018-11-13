@@ -39,7 +39,7 @@ include_once '../cabecalho.php';
                             <?php foreach ($aPagina as $pagina) { ?>
                                 <tr>
                                     <td>
-                                        <a class='btn btn-primary'<a href="formulario.php?id_pagina=<?= $pagina['id_pagina'] ?>">Alterar</a>
+                                        <a class='btn btn-primary' href="formulario.php?id_pagina=<?= $pagina['id_pagina'] ?>">Alterar</a>
                                         <a class='btn btn-danger' href="processamento.php?acao=excluir&id_pagina=<?= $pagina['id_pagina'] ?>"> Excluir</a>
                                     </td>
                                     <td><?= $pagina['nome'] ?></td>

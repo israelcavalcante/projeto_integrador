@@ -52,6 +52,7 @@ if (!empty($_GET['id_editora'])){
         <label for="email" class="col-sm-2 control-label">E-mail</label>
         <div class="col-sm-10">
             <input type="email" class="form-control" id="email" name="email" placeholder="E-mail" value="<?=$editoras->getEmail()?>">
+       <div id="mensagemEmail" class="col- sm-15 alert-danger"></div>
         </div>
     </div>
     <div class="form-group">
@@ -104,6 +105,19 @@ if (!empty($_GET['id_editora'])){
 include_once ('../rodape.php');
 ?>
 <script>
+
+    $(function () {
+        // AJAX para verificação do título
+        $('#email').change(function () {
+            $.ajax({
+                url: 'processamento.php?acao=verificar_email&' + $('#email').serialize(),
+                success: function (dados) {
+                    $('#mensagemEmail').html(dados);
+                }
+            });
+        })
+    });
+
 
     $(function () {
         // AJAX para verificação do título

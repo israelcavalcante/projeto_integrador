@@ -41,7 +41,8 @@ switch ($_GET['acao']) {
         if ($existe) {
             echo "Esse email {$_GET['email']} já existe informe outro.";
         }
-    break;
+    die;
 }
 
 header('location: index.php');
+?>

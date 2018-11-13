@@ -136,6 +136,7 @@ class Pagina
         $conexao = new Conexao();
 
         $sql = "delete from pagina where id_pagina = '$id_pagina'";
+//        echo '<pre>'; print_r($sql); echo '</pre>'; die;
         return $conexao->executar($sql);
     }
 }

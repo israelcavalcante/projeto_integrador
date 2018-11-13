@@ -26,6 +26,13 @@ switch ($_GET['acao']) {
             echo "Essa editora {$_GET['nome_fantasia']} já existe informe outra.";
         }
         die;
+    case 'verificar_email':
+        $existe = $editora->existeEmail($_GET['email']);
+
+        if ($existe) {
+            echo "Esse email {$_GET['email']} já existe informe outro.";
+        }
+        die;
 
 
 };

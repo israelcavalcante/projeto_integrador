@@ -37,8 +37,9 @@ include_once '../cabecalho.php';
                 <td>{$alivro['categoria_livro']}</td>
                 <td>{$alivro['isbn']}</td>
                 <td>{$alivro['id_editora']}</td>
-                <td>{$alivro['foto']}</td>
-            </tr>
+                <td><img width='80px' src='../upload/livro/{$alivro['foto']}'></td>    
+                 
+                 </tr>
         ";
         } ?>
 

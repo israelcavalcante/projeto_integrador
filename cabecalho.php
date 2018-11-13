@@ -6,6 +6,7 @@ $possuiAcesso = (new Usuario())->possuiAcesso();
 
 if (!$possuiAcesso) {
     header('location: ../usuario/login.php');
+    die;
 }
 
 ?>
@@ -47,8 +48,7 @@ if (!$possuiAcesso) {
 
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="../home/index.php">Home</a></li>
-                <li><a href="../pedido/index.php">Pedidos</a></li>
+                                <li><a href="../pedido/index.php">Pedidos</a></li>
                 <li><a href="../venda/index.php">Venda</a></li>
                 <li><a href="../cliente/index.php">Clientes</a></li>
                 <li><a href="../livro/index.php">Livros</a></li>
@@ -59,7 +59,7 @@ if (!$possuiAcesso) {
                 <li style="color:rgba(242,248,255,0.86); padding-top: 1.1em;" class="user-name"><?= $_SESSION['usuario']['nome']; ?></li>
                 <li>
                     <a href="../usuario/logof.php"><i class="glyphicon glyphicon-log-out"></i></a>
-<!--                    <a style="color: #f9fffa" title="Sair" href="../usuario/processamento.php?acao=deslogar" class="fa fa-sign-out"></a>-->
+                    <a style="color: #f9fffa" title="Sair" href="../usuario/processamento.php?acao=deslogar" class="fa fa-sign-out"></a>
                 </li>
 
             </ul>

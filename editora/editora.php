@@ -266,4 +266,16 @@ class editora
 
         return (boolean) $dados[0]['qtd'];
     }
-};
+
+    public function existeEmail($email)
+    {
+        $conexao = new Conexao();
+
+        $sql = "SELECT COUNT(email) qtd FROM editora WHERE email = '$email'";
+
+        $dados =  $conexao->recuperarDados($sql);
+
+        return (boolean) $dados[0]['qtd'];
+    }
+}
+?>

@@ -67,6 +67,7 @@ if (!empty($_GET['id_livro'])){
             <label for="foto" class="col-sm-2 control-label">Foto</label>
             <div class="col-sm-10">
                 <input type="file" class="form-text" id="foto" name="foto" value="<?php echo $livros->getFoto(); ?>">
+
             </div>
         </div>
 

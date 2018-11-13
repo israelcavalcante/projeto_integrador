@@ -38,7 +38,7 @@ if (!empty($_GET['id_usuario'])){
     <div class="form-group">
         <label for="email" class="col-sm-2 control-label">Email</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="email" name="email" value="<?=$usuarios->getEmail()?>">
+            <input type="email" class="form-control" id="email" name="email" value="<?=$usuarios->getEmail()?>">
             <div  class="col-sm-15 alert-danger" id="mensagem" ></div>
         </div>
     </div>
@@ -80,7 +80,7 @@ include_once ('../rodape.php');
 ?>
 <script>
     $(function () {
-        // AJAX para verificação do email
+        // AJAX para verificação do título
         $('#email').change(function () {
             $.ajax({
                 url: 'processamento.php?acao=verificar_email&' + $('#email').serialize(),

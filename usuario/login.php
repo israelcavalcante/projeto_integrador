@@ -1,6 +1,3 @@
-<?php
-include_once '../cabecalho.php';
-?>
 <!DOCTYPE html>
 <!-- saved from url=(0046)http://127.0.0.1/iesb-eleicoes/tema/login.html -->
 <html lang="pt">
@@ -19,7 +16,7 @@ include_once '../cabecalho.php';
             padding : 50px 0;
         }
         .banner-sec{background:url(https://img.estadao.com.br/resources/jpg/5/4/1524774815745.jpg)  no-repeat left bottom; background-size:cover; min-height:500px; border-radius: 0 10px 10px 0; padding:0;}
-        .container{background:#fff; border-radius: 10px; box-shadow:15px 20px 0px rgba(0,0,0,0.1);}
+        .container{background: #32535a; border-radius: 10px; box-shadow:15px 20px 0px rgba(0,0,0,0.1);}
         .carousel-inner{border-radius:0 10px 10px 0;}
         .carousel-caption{text-align:left; left:5%;}
         .login-sec{padding: 50px 30px; position:relative;}

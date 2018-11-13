@@ -37,7 +37,7 @@ class Usuario
         return $this->email;
     }
 
-    public function setEmail($email): void
+    public function setEmail($email)
     {
         $this->email = $email;
     }
@@ -47,7 +47,7 @@ class Usuario
         return $this->senha;
     }
 
-    public function setSenha($senha): void
+    public function setSenha($senha)
     {
         $this->senha = $senha;
     }
@@ -57,7 +57,7 @@ class Usuario
         return $this->id_perfil;
     }
 
-    public function setIdperfil($id_perfil): void
+    public function setIdperfil($id_perfil)
     {
         $this->id_perfil = $id_perfil;
     }
@@ -83,7 +83,6 @@ class Usuario
         $this->id_usuario = $dados[0]['id_usuario'];
         $this->nome = $dados[0]['nome'];
         $this->email = $dados[0]['email'];
-        $this->senha = $dados[0]['senha'];
         $this->id_perfil = $dados[0]['id_perfil'];
 
 //        print_r($sql);
@@ -101,7 +100,7 @@ class Usuario
 
         $conexao = new Conexao();
 
-        $sql = "INSERT INTO usuario (nome, email, senha, id_perfil) VALUES ('$nome','$email','($senha).','$id_perfil')";
+        $sql = "INSERT INTO usuario (nome, email, senha, id_perfil) VALUES ('$nome','$email','$senha','$id_perfil')";
 
 //        print_r($sql);
 //        die;
@@ -170,7 +169,7 @@ class Usuario
 
     public function possuiAcesso()
     {
-        $raizUrl = '/PHP/projeto_individual/';
+        $raizUrl = '/php/projeto_individual/';
         $url = $_SERVER['REQUEST_URI'];
         $url2 = explode('?',$url);
 
@@ -215,3 +214,4 @@ class Usuario
         return (boolean) $dados[0]['qtd'];
     }
 }
+?>

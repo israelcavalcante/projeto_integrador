@@ -28,6 +28,7 @@ include_once '../cabecalho.php';
                                class="table table-bordered table-hover table-striped table-condensed">
                             <thead>
                             <tr>
+                                <td width="15%">Ações</td>
                                 <th>ID</th>
                                 <th>Nome</th>
                             </tr>
@@ -36,6 +37,10 @@ include_once '../cabecalho.php';
                             <?php foreach ($aPerfil as $perfil) {
                                 echo "
                                     <tr>
+                                         <td>
+                                              <a class='btn btn-primary' href='formulario.php?id_perfil={$perfil['id_perfil']}'><span class='glyphicon glyphicon-pencil'></span> Alterar</a>
+                                              <a class='btn btn-danger' href='processamento.php?acao=excluir&id_perfil={$perfil['id_perfil']}'><span class='glyphicon glyphicon-trash'></span> Excluir</a>
+                                        </td>
                                         <td>{$perfil['id_perfil']}</td>
                                         <td>{$perfil['nome']}</td>
                                     </tr>
